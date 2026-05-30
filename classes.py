@@ -12,7 +12,7 @@ class Character:
     """
     character_count = 0
 
-    def __init__(self, name, max_health, attack_power, health=0):
+    def __init__(self, name, max_health, attack_power):
         self.name = name
         self.max_health = max_health
         self.health = max_health
@@ -32,7 +32,7 @@ class Character:
         """
 
         print(f"{self.name}'s stats:")
-        for key, value in dict(self.__dict__).items():
+        for key, value in self.__dict__.items():
             print(f'{key} : {value}')
             
             
@@ -70,7 +70,7 @@ class Character:
             Healing cannot increase health beyond max_health.
         """
         
-        heal_value=500
+        heal_value= 0.1 * self.max_health
         
         if self.health + heal_value > self.max_health:
             heal_value = self.max_health -self.health
@@ -89,6 +89,35 @@ class Character:
                 bool: True if health is greater than zero, otherwise False.
         """
         return self.health > 0
+    
+    
+
+
+class Warrior( Character ):
+    
+    def __init__(self, name, max_health, attack_power, armour):
+        super().__init__( name, max_health, attack_power)
+        print("child's constructor called")
+        self.armour = armour
+   
+        
+class Mage( Character ):
+    
+    def __init__(self, name, max_health, attack_power, mana):
+        super().__init__(name, max_health, attack_power)
+        self.mana = mana
+    
+    
+        
+class Archer( Character ):
+    
+    def __init__(self, name, max_health, attack_power, arrows):
+        super().__init__(name, max_health, attack_power)
+        self.arrows = arrows
+        
+        
+        
+        
 
 
     
